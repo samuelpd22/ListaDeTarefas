@@ -1,0 +1,175 @@
+@keyframes loading {
+    0% {
+      width: 0%;
+    }
+    100% {
+      width: 100%;
+    }
+  }
+  
+.highlight {
+  background-color: rgb(250, 224, 74); /* Cor de fundo amarela para valores aciam de 1k */
+}
+
+
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5); 
+  z-index: 1040;
+}
+
+.modal {
+  display: none; /*Por padrão, não mostrar*/
+  z-index: 1050;
+}
+
+.modal.show {
+  display: block; 
+}
+
+.button-modal{
+  display: flex;
+  justify-content: space-between;
+}
+
+.custom-card {
+  background-color: #220d7e00; 
+  border-radius: 10px; 
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); 
+  padding: 20px; 
+  transition: transform 0.3s; 
+}
+
+
+.btn-add{
+  background-color:#3e70dbf3;
+  color: white;
+}
+.btn-add:hover{
+  background-color: #2e5495;
+}
+.btn:hover{
+  background-color: #234784c0;
+}
+.btn-link {
+  transition: transform 0.3s ease; 
+}
+.btn-link:hover {
+  background-color: #23478400;
+  transform: scale(1.1);
+}
+
+
+.btn-arrow {
+  background: none; 
+  border: none; 
+  padding-left:5px ;
+  color: inherit; 
+  text-decoration: none; 
+  cursor: pointer; 
+  font-size: 16px;
+}
+
+.btn-arrow:hover {
+  opacity: 0.8;
+}
+
+.btn-arrow:focus {
+  outline: none; 
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.custom-form {
+  max-width: 400px; 
+  width: 100%;
+}
+
+.text-warningG {
+  color: black;
+  background-color: rgb(255, 115, 0);
+}
+
+.mostrador {
+  max-width: 200px;
+  background-color: rgb(255, 115, 0); 
+  color: rgba(0, 0, 0, 0.774); 
+  padding: 10px; 
+  border-radius: 5px; 
+  position: fixed; 
+  right: 20px; 
+  z-index: 1000; 
+  opacity: 1; 
+  transition: opacity 6s ease;
+  margin-bottom: 10px; 
+}
+
+.mostrador.hidden {
+  opacity: 0; /* Opacidade para esconder */
+}
+
+.mostrador:nth-of-type(1) {
+  top: 20px; /* Posição do primeiro mostrador */
+}
+
+.mostrador:nth-of-type(2) {
+  top: 130px; /* Posição do segundo mostrador, abaixo do primeiro */
+}
+
+
+/* Estilos para telas pequenas */
+@media (max-width: 768px) {
+  .custom-form {
+    max-width: 100%;
+  }
+
+  .modal-content {
+    width: 100%; /* Modal ocupará toda a largura da tela em telas pequenas */
+  }
+
+  .table-responsive {
+    overflow-x: auto; /* Permite rolar horizontalmente a tabela se necessário */
+  }
+
+  .card-body {
+    padding: 10px; 
+  }
+
+  .custom-card {
+    padding: 15px; 
+  }
+
+  .wrapper {
+    justify-content: flex-start;
+  }
+
+  .direita {
+    text-align: left; /* Ajusta alinhamento do conteúdo à esquerda */
+  }
+
+  .btn-add {
+    width: 100%; /* Faz o botão de adicionar ocupar a largura total */
+  }
+
+  .btn-arrow {
+    font-size: 14px; /* Ajusta o tamanho da seta para telas pequenas */
+  }
+}
+
+@media (max-width: 576px) {
+  .icon-edit {
+    font-size: 14px; /* Reduz o tamanho do ícone em telas muito pequenas */
+  }
+
+  .table th, .table td {
+    font-size: 12px; /* Ajusta o tamanho da fonte da tabela para telas muito pequenas */
+  }
+}

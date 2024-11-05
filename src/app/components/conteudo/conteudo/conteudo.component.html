@@ -1,0 +1,120 @@
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-body custom-card">
+
+          <div *ngIf="avisoVisivel" class="mostrador">
+            <strong>Atenção:</strong> As datas em laranja estão próximas do vencimento (menos de 5 dias).
+          </div>
+
+          <!-- Barra de Pesquisa -->
+          <div class="row">
+            <div class="col-md-9">
+              <mdb-form-control>
+                <input
+                  mdbInput
+                  type="text"
+                  id="form1"
+                  class="form-control"
+                  [(ngModel)]="nomeBusca"
+                  (keydown.enter)="buscarPorNome()" 
+                />
+                <label mdbLabel class="form-label" for="form1">Pesquisar pelo nome da tarefa</label>
+              </mdb-form-control>
+              <br>
+            </div>
+
+            <div class="col-md-3">
+              <button type="button" class="btn btn-add w-100" (click)="listAll()">Todas Tarefas</button>
+            </div>
+
+          </div>
+
+          <br>
+
+          <!-- Tabela -->
+          <div class="table-responsive">
+            <table border="1" class="table table-striped">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Nome</th>
+                  <th>Custo</th>
+                  <th>Data Limite</th>
+                  <th>Ações</th>
+                </tr>
+              </thead>
+              <tbody >
+                <tr *ngFor="let tarefa of listaDeTarefas; let i = index"  [ngClass]="{'highlight': tarefa.custo >= 1000}">
+                  <td>{{ tarefa.id }}</td>
+                  <td>{{ tarefa.nomeTarefa }}</td>
+                  <td>{{ tarefa.custo | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</td>
+                  <td [ngClass]="{'text-warningG': vencimentoProximo(tarefa.dataLimite)}" title="Próximo do vencimento">
+                    {{ tarefa.dataLimite | date:'dd/MM/yyyy' }}
+                  </td>
+                  <td class="direita">
+                    <button (click)="editTarefa(tarefa)" type="button" class="btn btn-link" mdbRipple>
+                      <i class="fas fa-edit icon-edit"></i>
+                    </button>
+                    <button (click)="deleteById(tarefa)" type="button" class="btn btn-link" mdbRipple>
+                      <i class="fas fa-trash icon-trash"></i>
+                    </button>
+                    <button (click)="moverParaCima(tarefa)" class="btn-arrow" [disabled]="i === 0">
+                      <i class="fa-solid fa-arrow-up"></i>
+                    </button>
+                    <button (click)="moverParaBaixo(tarefa)" class="btn-arrow" [disabled]="i === listaDeTarefas.length - 1">
+                      <i class="fa-solid fa-arrow-down"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <br>
+          <button type="button" class="btn btn-add" mdbRipple (click)="abrirModal()">Incluir Registro</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!--Modal de editar-->
+<div class="modal-overlay" *ngIf="ModalEstaAberto" (click)="fecharModal()"></div>
+<div class="modal" tabindex="-1" role="dialog" [ngClass]="{'show': ModalEstaAberto}" [style.display]="ModalEstaAberto ? 'block' : 'none'">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Editar Tarefa</h5>
+        <button type="button" class="close" (click)="fecharModal()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="nomeTarefa">Nome da Tarefa</label>
+            <input type="text" class="form-control" id="nomeTarefa" name="nomeTarefa" placeholder="Digite o nome da tarefa" [(ngModel)]="tarefasEdit.nomeTarefa">
+          </div>
+          <div class="form-group">
+            <label for="custo">Custo</label>
+            <input type="number" class="form-control" id="custo" name="custo" placeholder="Digite o custo" [(ngModel)]="tarefasEdit.custo">
+          </div>
+          <div class="form-group">
+            <label for="dataLimite">Data Limite</label>
+            <input type="date" class="form-control" id="dataLimite" name="dataLimite" [(ngModel)]="tarefasEdit.dataLimite">
+          </div>
+        </form>
+        <br>
+        <div class="button-modal">
+          <button type="button" class="btn btn-secondary" (click)="fecharModal()">Fechar</button>
+          <button type="button" class="btn btn-add" (click)="salvarTarefa()">Salvar alterações</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
