@@ -8,8 +8,10 @@ import { Tarefa } from '../models/tarefa/Tarefa';
 })
 export class TarefaService {
 
+  //https://listadetarefasdesafio-backend.onrender.com
   // URL da API
-  private readonly API_URL = "http://localhost:8080/tarefas";
+  //private readonly API_URL = "http://localhost:8080/tarefas";
+  private readonly API_URL = "https://listadetarefasdesafio-backend.onrender.com/tarefas";
 
 
   // @Autowired
