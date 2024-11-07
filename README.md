@@ -6,7 +6,7 @@
 [Assista ao vídeo aqui](https://www.youtube.com/watch?v=098eXUc4_NI)
 
 
-## [Ao vivo](https://livraria-sl-angular.vercel.app/)
+## [Ao vivo](https://lista-de-tarefas-desafio-front-end.vercel.app/)
 ### ***Observação:***  O ***BACKEND*** está configurado para iniciar apenas após receber ***REQUEST's***, então e possivel que demore até **5 MINUTOS** para que as tarefas apareçam.
 
 ### Link do [backend](https://github.com/samuelpd22/listaDeTarefasDesafio-BackEnd)
